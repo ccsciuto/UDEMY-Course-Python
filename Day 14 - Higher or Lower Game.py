@@ -4,11 +4,15 @@
 import random
 from replit import clear
 import os
+
+
 def random_celeb():
     """function that chooses a random celebrity"""
     celeb = random.choice(celebs)
     return celeb
 # a list of dict of celebs where you will compare higher or lower
+
+
 celebs = [
     {
         'name': 'Instagram',
@@ -312,13 +316,14 @@ celebs = [
     }
 ]
 print("Welcome to Higher or Lower!\n"
-      "In this game you need to decide if you think a certain instagram account has a higher or lower follower count than the other!\n"
+      "In this game you need to decide if you think a certain instagram account has a higher or lower follower count "
+      "than the other!\n "
       "If you get it right the game continues and your score increases. If you get it wrong the game ends.\n"
       "Goodluck!")
 # use random choice to choose two random celebs from the list to compare
 
 continue_game = True
-#starting score
+# starting score
 score = 0
 #  recording high score
 high_score = 0
@@ -339,19 +344,22 @@ while continue_game:
     choice = input().lower()
     # checking if guess was right and continuing or ending game and adding score
     if celebrity1['follower_count'] > celebrity2['follower_count'] and choice == "a":
-        print(f"Correct! {celebrity1['name']} has {celebrity1['follower_count']} million followers and {celebrity2['name']} has {celebrity2['follower_count']} million followers.")
+        print(f"Correct! {celebrity1['name']} has {celebrity1['follower_count']} million followers and "
+              f"{celebrity2['name']} has {celebrity2['follower_count']} million followers.")
         score += 1
         print(f"Your score is {score} points.")
         celebrity1 = celebrity2
         clear()
     elif celebrity1['follower_count'] < celebrity2['follower_count'] and choice == "b":
-        print(f"Correct! {celebrity1['name']} has {celebrity1['follower_count']} million followers and {celebrity2['name']} has {celebrity2['follower_count']} million followers.")
+        print(f"Correct! {celebrity1['name']} has {celebrity1['follower_count']} million followers and "
+              f"{celebrity2['name']} has {celebrity2['follower_count']} million followers.")
         score += 1
         print(f"Your score is {score} points.")
         celebrity1 = celebrity2
         clear()
     else:
-        print(f"Wrong! {celebrity1['name']} has {celebrity1['follower_count']} million followers and {celebrity2['name']} has {celebrity2['follower_count']} million followers.")
+        print(f"Wrong! {celebrity1['name']} has {celebrity1['follower_count']} million followers and "
+              f"{celebrity2['name']} has {celebrity2['follower_count']} million followers.")
         print(f"Game over! You ended with a score of {score}.")
         continue_game = False
         if score > high_score:
