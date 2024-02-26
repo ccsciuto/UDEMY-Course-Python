@@ -49,11 +49,11 @@ month = int(input())
 days = days_in_month(year, month)
 print(days)
 
-docstrings
+# docstrings
 def using_docstring():
     """This is how we add documentation to a function"""
 
-# using_docstring()
+using_docstring()
 # building a calculator
 def add(n1, n2):
     return n1 + n2
