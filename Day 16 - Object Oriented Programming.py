@@ -1,7 +1,7 @@
-Class is the blueprint of an object class has first letter capitalized
-things that make up an object:
-Attributes - what it holds(variables/lists etc
-Methods - what the object does(functions)
+# Class is the blueprint of an object class has first letter capitalized
+# things that make up an object:
+# Attributes - what it holds(variables/lists etc
+# Methods - what the object does(functions)
 
 from turtle import Turtle, Screen
 toddy = Turtle()
