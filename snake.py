@@ -7,7 +7,7 @@ RIGHT = 0
 LEFT = 180
 
 
-class Snake():
+class Snake:
     def __init__(self):
         self.pieces = []
         self.create_snake()
@@ -17,13 +17,11 @@ class Snake():
         for position in STARTING_POSITIONS:
             self.add_segment(position)
 
-    def move(self, selection):
+    def move(self):
         for piece in range(len(self.pieces) - 1, 0, -1):
             new_x = self.pieces[piece - 1].xcor()
             new_y = self.pieces[piece - 1].ycor()
             self.pieces[piece].goto(new_x, new_y)
-            speed = self.level(selection=selection)
-            self.pieces[piece].speed(speed)
         self.pieces[0].forward(MOVE_DISTANCE)
 
     def up(self):
@@ -52,10 +50,5 @@ class Snake():
     def extend(self):
         self.add_segment(self.pieces[-1].position())
 
-    def level(self, selection):
-        if selection == "easy":
-            return 1
-        elif selection == "hard":
-            return 10
 
 
