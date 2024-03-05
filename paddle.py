@@ -2,6 +2,7 @@ from turtle import Turtle
 ALIGNMENT = "center"
 FONT = ("Courier", 24, "normal")
 
+
 class Paddle(Turtle):
 
     def __init__(self, position):
