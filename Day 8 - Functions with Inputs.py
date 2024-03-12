@@ -29,7 +29,7 @@ import math
 test_height = int(input("What is the height of the wall?\n"))
 test_length = int(input("What is the length of the wall?\n"))
 test_coverage = 5
-paint_calc = (height=test_height, length=test_length, coverage=test_coverage)
+# paint_calc(height=test_height, length=test_length, coverage=test_coverage)
 
 def paint_calc(height, length, coverage):
     num_cans = (height*length)/coverage
