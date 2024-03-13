@@ -1,26 +1,38 @@
 from tkinter import *
 import random
+from tkinter import messagebox
 
-ALPHABET = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z''a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-SIGN = ["/", "!", "@", "#", "?", "$", "<", ">", "*"]
+
+CHOICES = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',"/", "!", "@", "#", "?", "$", "<", ">", "*", 1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
+
 
 # functions
 def save_submission():
     website = website_entry.get()
     email = email_entry.get()
-    password = password_entry.get()
+    password_used = password_entry.get()
+    data = f"{website} | {email} | {password_used}"
+    if website == "" or password_used == "" or email == "":
+        messagebox.showerror(title="Empty Field", message="Dont leave any fields empty!")
+    else:
+        is_ok = messagebox.askokcancel(title=website, message=f"These are the details you entered:\n"
+                                                              f"Email: {email}\n"
+                                                              f"Password: {password_used}\n"
+                                                              f"Is is okay to save?")
+        if is_ok:
+            with open("password_manager.txt", "a") as file:
+                file.write(data)
+            website_entry.delete(0, END)
+            password_entry.delete(0, END)
+
 
 
 def password_generator():
     password = ""
-    # password_entry.delete(0, END)
-    for _ in range(3):
-        rand_num = str(random.randint(0, 9))
-        rand_letter = random.choice(ALPHABET)
-        rand_sign = random.choice(SIGN)
-        password += rand_sign
-        password += rand_letter
-        password += rand_num
+    password_entry.delete(0, END)
+    for _ in range(10):
+        rand_choice = str(random.choice(CHOICES))
+        password += rand_choice
     password_entry.insert(0, password)
 
 
@@ -51,6 +63,6 @@ password_entry.grid(column=1, row=3)
 # button
 generate_pw = Button(text="Generate Password", bg="white", command=password_generator, fg="black")
 generate_pw.grid(column=2, row=3)
-add_button = Button(text="Add to File", width=36)
+add_button = Button(text="Add to File", width=36, command=save_submission)
 add_button.grid(column=1, row=4, columnspan=2)
 window.mainloop()
