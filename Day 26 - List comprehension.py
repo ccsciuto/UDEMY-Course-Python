@@ -56,6 +56,20 @@ import pandas as pd
 alpha = pd.read_csv("nato_phonetic_alphabet.csv")
 dict = {row.letter:row.code for (index, row) in alpha.iterrows()}
 print(dict)
-name = input("Whats your Name?: ").upper()
-words = [dict[l] for l in name]
-print(words)
+words = []
+
+
+def generate_phone():
+    name = input("Whats your Name?: ").upper()
+    try:
+        for l in name:
+            word = dict[l]
+            words.append(word)
+    except KeyError:
+        print("You included non letters")
+        generate_phone()
+    else:
+        print(words)
+
+
+generate_phone()
