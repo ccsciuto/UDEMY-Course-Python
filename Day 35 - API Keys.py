@@ -5,8 +5,8 @@ API_KEY = "0a15e395603f856a959421c4f8667317"
 MY_LAT = 30.267153
 MY_LONG = 97.743057
 OWM_endpoint = "https://api.openweathermap.org/data/2.5/forecast"
-account_sid = "AC71816a77a30558a4613eed83b8221b21"
-auth_token = "3589647e6a33eb13f71f939fbe1d0e2d"
+account_sid = ""
+auth_token = ""
 
 parameters ={
     "lat": MY_LAT,
@@ -28,7 +28,7 @@ if will_rain:
     message = client.messages \
         .create(
         body="Testing SMS Weather notif",
-        from_="+18334966404",
-        to="+16034982416"
+        from_="+",
+        to="+"
     )
     print(message.status)
