@@ -1,0 +1,42 @@
+import requests
+from datetime import datetime
+import os
+
+EXERCISE = input("Whta exercise did you do today? ")
+NUTRITION_API = os.environ["EXERCISE_API_KEY"]
+NUTRITION_APP_ID = "d99ab099"
+NUTRITION_ENDPOINT = "https://trackapi.nutritionix.com/v2/natural/exercise"
+SHEETY_ENDPOINT = "https://api.sheety.co/c9e4bb6994a5898bdd4c1c2b112c7be8/myWorkouts/workouts"
+nutrition_params = {
+    "query": EXERCISE,
+    "gender": "female",
+    "weight_kg": 65,
+    "height_cm": 162,
+    "age": 27,
+}
+headers = {
+    "x-app-id": NUTRITION_APP_ID,
+    "x-app-key": NUTRITION_API,
+}
+
+response = requests.post(NUTRITION_ENDPOINT, json=nutrition_params, headers=headers)
+result = response.json()
+print(result["exercises"][0])
+today_date = datetime.now().strftime("%d/%m/%Y")
+now_time = datetime.now().strftime("%X")
+sheety_headers = {
+    "Authorization": "Basic Y2FzMzg2OkhlcnNoZXk1MDU="
+}
+for exercise in result["exercises"]:
+    sheet_inputs = {
+        "workout": {
+            "date": today_date,
+            "time": now_time,
+            "exercise": exercise["name"].title(),
+            "duration": exercise["duration_min"],
+            "calories": exercise["nf_calories"]
+        }
+    }
+    response = requests.post(SHEETY_ENDPOINT, json=sheet_inputs, headers=sheety_headers)
+    result = response.status_code
+    print(result)
